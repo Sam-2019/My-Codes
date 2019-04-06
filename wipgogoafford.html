@@ -1,0 +1,191 @@
+ <!DOCTYPE html>
+<html>
+    
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+<title>Loan Amount Checker</title>
+    
+<style>
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  background-color: #2196F3;
+  padding: 5px;
+}
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 50px;
+  font-size: 30px;
+  text-align: center;
+}
+
+
+label {
+margin-right: .5em;
+}
+
+
+
+input[type="submit"], input[type="reset"]{
+font-family: Georgia, "Times New Roman", Times, serif;
+width: 6.2em;
+height: 2em;
+background: white;
+border-radius: 4px;
+}
+    
+</style>
+</head>
+    
+<body>
+<h1>Dalex Finance</h1>
+    
+<p>Enter Afford:</p>
+
+    <table cellspacing="5" cellpadding="3">	 
+<input id="afford" type="number" name="" placeholder="afford" required>
+    
+    <br> <br>
+    
+<input type="submit" value="Calculate" class="buttons" onclick="calculate()">
+     
+<input type="reset" class="buttonsb"
+name="reset_form" value="Reset" onclick="reset()">
+     <br><br>
+    
+
+<tr>
+<td> <label>Loan Amount: </label> </td>
+
+<tr>
+<td><label>3 </label> </td>
+<td><span class="output" id="3"></span> </td>
+</tr>    
+    
+<tr>
+<td><label>6 </label> </td>
+<td><span class="output" id="6"></span> </td>
+</tr> 
+        
+<tr>
+<td><label>12 </label> </td>
+<td><span class="output" id="12"></span> </td>
+</tr> 
+        
+<tr>
+<td><label>18 </label> </td>
+<td><span class="output" id="18"></span> </td>
+</tr> 
+        
+<tr>
+<td><label>24 </label> </td>
+<td><span class="output" id="24"></span> </td>
+</tr> 
+        
+<tr>
+<td><label>30 </label> </td>
+<td><span class="output" id="30"></span> </td>
+</tr>    
+    
+<tr>
+<td><label>36 </label> </td>
+<td><span class="output" id="36"></span> </td>
+</tr> 
+        
+<tr>
+<td><label>42 </label> </td>
+<td><span class="output" id="42"></span> </td>
+</tr> 
+        
+<tr>
+<td><label>48 </label> </td>
+<td><span class="output" id="48"></span> </td>
+</tr> 
+        
+<tr>
+<td><label>54 </label> </td>
+<td><span class="output" id="54"></span> </td>
+</tr> 
+
+
+  </table>   
+
+ 
+ <script> 
+     
+var loanAfford = document.getElementById("afford");
+     
+var rate_loan = 
+[0.065, 0.060041, 0.062861, 0.0570, 0.045539, 0.045936, 0.046222, 0.046435];
+    
+var period_loan = 
+[3, 6, 12, 18, 24, 30, 36, 42, 48, 54];
+     
+function calculate(){
+    
+var afford = parseFloat(loanAfford.value);
+    
+var admin   = (1 + 0.06);
+    
+function amountFunction(afford, pmt, admin) {
+  return (afford * pmt) / admin;
+}
+    
+var period3 = amountFunction(afford, ((1/rate_loan[0])-(1/(rate_loan[0]*Math.pow((1+rate_loan[0]),period_loan[0])))), admin);
+    
+var period6 = amountFunction(afford, ((1/rate_loan[0])-(1/(rate_loan[0]*Math.pow((1+rate_loan[0]),period_loan[1])))), admin);
+    
+var period12 = amountFunction(afford, ((1/rate_loan[1])-(1/(rate_loan[1]*Math.pow((1+rate_loan[1]),period_loan[2])))), admin);
+    
+var period18 = amountFunction(afford, ((1/rate_loan[2])-(1/(rate_loan[2]*Math.pow((1+rate_loan[2]),period_loan[3])))), admin);
+    
+var period24 = amountFunction(afford, ((1/rate_loan[3])-(1/(rate_loan[3]*Math.pow((1+rate_loan[3]),period_loan[4])))), admin);
+    
+var period30 = amountFunction(afford, ((1/rate_loan[3])-(1/(rate_loan[3]*Math.pow((1+rate_loan[3]),period_loan[5])))), admin);
+    
+var period36 = amountFunction(afford, ((1/rate_loan[4])-(1/(rate_loan[4]*Math.pow((1+rate_loan[4]),period_loan[6])))), admin);
+    
+var period42 = amountFunction(afford, ((1/rate_loan[5])-(1/(rate_loan[5]*Math.pow((1+rate_loan[5]),period_loan[7])))), admin);
+    
+var period48 = amountFunction(afford, ((1/rate_loan[6])-(1/(rate_loan[6]*Math.pow((1+rate_loan[6]),period_loan[8])))), admin);
+    
+var period54 = amountFunction(afford, ((1/rate_loan[7])-(1/(rate_loan[7]*Math.pow((1+rate_loan[7]),period_loan[9])))), admin);
+    
+document.getElementById("3").innerHTML  = period3.toFixed(2);
+document.getElementById("6").innerHTML  = period6.toFixed(2);
+document.getElementById("12").innerHTML = period12.toFixed(2);
+document.getElementById("18").innerHTML = period18.toFixed(2);
+document.getElementById("24").innerHTML = period24.toFixed(2);
+document.getElementById("30").innerHTML = period30.toFixed(2);
+document.getElementById("36").innerHTML = period36.toFixed(2);
+document.getElementById("42").innerHTML = period42.toFixed(2);
+document.getElementById("48").innerHTML = period48.toFixed(2);
+document.getElementById("54").innerHTML = period54.toFixed(2);
+
+
+} 
+  
+     
+function reset() {
+document.getElementById("afford").value = '';
+document.getElementById("3").innerHTML  = '';
+document.getElementById("6").innerHTML  = '';
+document.getElementById("12").innerHTML = '';
+document.getElementById("18").innerHTML = '';
+document.getElementById("24").innerHTML = '';
+document.getElementById("30").innerHTML = '';
+document.getElementById("36").innerHTML = '';
+document.getElementById("42").innerHTML = '';
+document.getElementById("48").innerHTML = '';
+document.getElementById("54").innerHTML = '';
+
+}
+     
+</script>
+    </body>

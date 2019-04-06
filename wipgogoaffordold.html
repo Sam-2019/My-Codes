@@ -1,0 +1,200 @@
+ <!DOCTYPE html>
+<html>
+    
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+<title>Loan Amount Checker</title>
+    
+<style>
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  background-color: #2196F3;
+  padding: 5px;
+}
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 50px;
+  font-size: 30px;
+  text-align: center;
+}
+
+
+label {
+margin-right: .5em;
+}
+
+
+
+input[type="submit"], input[type="reset"]{
+font-family: Georgia, "Times New Roman", Times, serif;
+width: 6.2em;
+height: 2em;
+background: white;
+border-radius: 4px;
+}
+    
+</style>
+</head>
+    
+<body>
+<h1>Dalex Finance</h1>
+    
+<p>Enter Afford:</p>
+
+    <table cellspacing="5" cellpadding="3">	 
+<input id="afford" type="number" name="" placeholder="afford" required>
+    
+    <br> <br>
+    
+<input type="submit" value="Calculate" class="buttons" onclick="calculate()">
+     
+<input type="reset" class="buttonsb"
+name="reset_form" value="Reset" onclick="reset()">
+     <br><br>
+    
+
+<tr>
+<td> <label>Loan Amount: </label> </td>
+
+
+<tr>
+<td><label>3 </label> </td>
+<td><span class="output" id="3"></span> </td>
+</tr>    
+    
+<tr>
+<td><label>6 </label> </td>
+<td><span class="output" id="6"></span> </td>
+</tr> 
+        
+<tr>
+<td><label>12 </label> </td>
+<td><span class="output" id="12"></span> </td>
+</tr> 
+        
+<tr>
+<td><label>18 </label> </td>
+<td><span class="output" id="18"></span> </td>
+</tr> 
+        
+<tr>
+<td><label>24 </label> </td>
+<td><span class="output" id="24"></span> </td>
+</tr> 
+        
+<tr>
+<td><label>30 </label> </td>
+<td><span class="output" id="30"></span> </td>
+</tr>    
+    
+<tr>
+<td><label>36 </label> </td>
+<td><span class="output" id="36"></span> </td>
+</tr> 
+        
+<tr>
+<td><label>42 </label> </td>
+<td><span class="output" id="42"></span> </td>
+</tr> 
+        
+<tr>
+<td><label>48 </label> </td>
+<td><span class="output" id="48"></span> </td>
+</tr> 
+        
+<tr>
+<td><label>54 </label> </td>
+<td><span class="output" id="54"></span> </td>
+</tr> 
+
+
+  </table>   
+
+ 
+ <script> 
+     
+var rate_loan = 
+[6.5, 6.0041, 6.2861, 5.7, 4.5539, 4.5936, 4.6222, 4.6435];
+
+var period_loan = 
+[3, 6, 12, 18, 24, 30, 36, 42, 48, 54];
+     
+var loanAfford = document.getElementById("afford");
+     
+var loanAmount      = document.getElementById("3");
+var loanAmount2     = document.getElementById("6");
+var loanAmount3     = document.getElementById("12");
+var loanAmount4     = document.getElementById("18");
+var loanAmount5     = document.getElementById("24");
+var loanAmount6     = document.getElementById("30");
+var loanAmount7     = document.getElementById("36");
+var loanAmount8     = document.getElementById("42");
+var loanAmount9     = document.getElementById("48");
+var loanAmount10    = document.getElementById("54");
+     
+function calculate(){
+    
+var afford = parseFloat(loanAfford.value);
+    
+var admin   = (1 + 0.06);
+    
+var pmt     = ((1/0.0650)-(1/(0.0650*Math.pow((1+0.0650),3))));
+var pmt2    = ((1/0.0650)-(1/(0.0650*Math.pow((1+0.0650),6))));
+var pmt3    = ((1/0.060041)-(1/(0.060041*Math.pow((1+0.060041),12))));
+var pmt4    = ((1/0.062861)-(1/(0.062861*Math.pow((1+0.062861),18))));
+var pmt5    = ((1/0.0570)-(1/(0.0570*Math.pow((1+0.0570),24))));
+var pmt6    = ((1/0.0570)-(1/(0.0570*Math.pow((1+0.0570),30))));
+var pmt7    = ((1/0.045539)-(1/(0.045539*Math.pow((1+0.045539),36))));
+var pmt8    = ((1/0.045936)-(1/(0.045936*Math.pow((1+0.045936),42))));
+var pmt9    = ((1/0.046222)-(1/(0.046222*Math.pow((1+0.046222),48))));
+var pmt10   = ((1/0.046435)-(1/(0.046435*Math.pow((1+0.046435),54))));
+
+var Amount      = (afford)*(pmt)/admin;
+var Amount2     = (afford)*(pmt2)/admin;
+var Amount3     = (afford)*(pmt3)/admin;
+var Amount4     = (afford)*(pmt4)/admin;
+var Amount5     = (afford)*(pmt5)/admin;
+var Amount6     = (afford)*(pmt6)/admin;
+var Amount7     = (afford)*(pmt7)/admin;
+var Amount8     = (afford)*(pmt8)/admin;
+var Amount9     = (afford)*(pmt9)/admin;
+var Amount10    = (afford)*(pmt10)/admin;
+    
+loanAmount.innerHTML    = (Amount).toFixed(2);
+loanAmount2.innerHTML   = (Amount2).toFixed(2);
+loanAmount3.innerHTML   = (Amount3).toFixed(2);
+loanAmount4.innerHTML   = (Amount4).toFixed(2);
+loanAmount5.innerHTML   = (Amount5).toFixed(2);
+loanAmount6.innerHTML   = (Amount6).toFixed(2);
+loanAmount7.innerHTML   = (Amount7).toFixed(2);
+loanAmount8.innerHTML   = (Amount8).toFixed(2);
+loanAmount9.innerHTML   = (Amount9).toFixed(2);
+loanAmount10.innerHTML  = (Amount10).toFixed(2);
+
+} 
+          
+     
+function reset() {
+document.getElementById("afford").value = '';
+document.getElementById("3").innerHTML = '';
+document.getElementById("6").innerHTML = '';
+document.getElementById("12").innerHTML = '';
+document.getElementById("18").innerHTML = '';
+document.getElementById("24").innerHTML = '';
+document.getElementById("30").innerHTML = '';
+document.getElementById("36").innerHTML = '';
+document.getElementById("42").innerHTML = '';
+document.getElementById("48").innerHTML = '';
+document.getElementById("54").innerHTML = '';
+
+}
+     
+</script>
+    </body>

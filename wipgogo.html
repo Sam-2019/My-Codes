@@ -1,0 +1,205 @@
+ <!DOCTYPE html>
+<html>
+    
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+<title>Monthly Deduction</title>
+    
+<style>
+
+label {
+margin-right: .5em;
+}
+
+
+
+input[type="submit"], input[type="reset"]{
+font-family: Georgia, "Times New Roman", Times, serif;
+width: 6.2em;
+height: 2em;
+background: white;
+border-radius: 4px;
+}
+    
+</style>
+</head>
+    
+<body>
+<h1>Loan Comp</h1>
+    
+<p>Enter Loan Data:</p>
+
+    <table cellspacing="5" cellpadding="3">	 
+<input id="amount" type="number" name="" placeholder="Loan Amount" required>
+     <br><br>
+
+    
+<input id="tenure1" type="" list="period" name="" onchange="rateShow()" placeholder="Tenure(months)" required> 
+    
+<datalist id="period">
+<option value="3">
+<option value="6">
+<option value="12">
+<option value="18">
+<option value="24">
+<option value="30">
+<option value="36">
+<option value="42">
+<option value="48">
+<option value="54">
+</datalist>
+    
+    <br> <br>
+<input type="button" value="Rate" id="2sign">
+<span id="rateoutput" class="output" hidden></span><br><br>
+    
+<input type="submit" value="Calculate" class="buttons" onclick="calculate()">
+     
+<input type="reset" class="buttonsb"
+name="reset_form" value="Reset" onclick="reset()">
+     <br><br>
+    
+
+<tr>
+<td> <label>Monthly Deduction: </label> </td>
+<td><span class="output" id="monthlyDeduc"></span></td></tr>    
+  
+
+<tr>
+<td><label>Total Interest: </label> </td>
+<td><span class="output" id="interest"></span> </td>
+</tr>    
+    
+<tr>
+<td><label>Total Payment: </label> </td>
+<td><span class="output" id="totalpay"></span> </td>
+</tr>    
+
+
+  </table>   
+
+ 
+ <script> 
+     
+var rate_loan = 
+[6.5, 6.0041, 6.2861, 5.7, 4.5539, 4.5936, 4.6222, 4.6435];
+
+var period_loan = 
+[3, 6, 12, 18, 24, 30, 36, 42, 48, 54];
+     
+var loanAmount = document.getElementById("amount");
+var loanDuration = document.getElementById("tenure1");
+var loanRateShow = document.getElementById("rateoutput");
+var loanPMT = document.getElementById("monthlyDeduc");
+var loanInterest = document.getElementById("interest");
+var loanTotalPay = document.getElementById("totalpay");
+    
+$("#rateoutput").hide();     
+     
+$("#2sign").on("click",function(){
+$("#rateoutput").toggle();
+});
+     
+function rateShow(){
+    switch(parseFloat(loanDuration.value)) {
+      case period_loan[0]:
+            loanRateShow.innerHTML = (rate_loan[0]);
+            break;
+       case period_loan[1]:
+            loanRateShow.innerHTML = (rate_loan[0]);
+            break;
+        case period_loan[2]:
+            loanRateShow.innerHTML = (rate_loan[1]);
+            break;
+        case period_loan[3]:
+            loanRateShow.innerHTML = (rate_loan[2]);
+            break;
+        case period_loan[4]:
+            loanRateShow.innerHTML = (rate_loan[3]);
+            break;
+        case period_loan[5]:
+            loanRateShow.innerHTML = (rate_loan[3]);
+            break;
+        case period_loan[6]:
+            loanRateShow.innerHTML = (rate_loan[4]);
+            break;
+        case period_loan[7]:
+            loanRateShow.innerHTML = (rate_loan[5]);
+            break;
+        case period_loan[8]:
+            loanRateShow.innerHTML = (rate_loan[6]);
+            break;
+        default:
+            loanRateShow.innerHTML = (rate_loan[7]);}
+}
+
+
+     
+function calculate(){
+    
+var amount           = parseFloat(loanAmount.value);
+    
+var interest         = parseFloat(loanInterest.value);
+var totalloanpayment = parseFloat(loanTotalPay.value);
+    
+var duration = parseFloat(loanDuration.value);
+    
+switch(duration) {
+    case period_loan[0]:
+        var rateRep = (rate_loan[0]);
+            break;
+    case period_loan[1]:
+        var rateRep = (rate_loan[0]);
+            break;
+    case period_loan[2]:
+        var rateRep = (rate_loan[1]);
+            break;
+    case period_loan[3]:
+        var rateRep = (rate_loan[2]);
+            break;
+    case period_loan[4]:
+        var rateRep = (rate_loan[3]);
+            break;
+    case period_loan[5]:
+        var rateRep = (rate_loan[3]);
+            break;
+    case period_loan[6]:
+        var rateRep = (rate_loan[4]);
+            break;
+    case period_loan[7]:
+        var rateRep = (rate_loan[5]);
+            break;
+    case period_loan[8]:
+        var rateRep = (rate_loan[6]);
+            break;
+    default:
+        var rateRep = (rate_loan[7]);} 
+    
+var rate =  (rateRep / 100);
+
+var admin   = (1 + 0.06);
+var pmt1    = (1/rate);
+var pmt2    = (1/(rate*Math.pow((1+rate),duration)));
+
+var PMT     = ((amount*admin)/(pmt1 - pmt2));
+    
+loanPMT.innerHTML      = (PMT).toFixed(2);
+loanInterest.innerHTML = ((PMT*duration) - amount).toFixed(2);
+loanTotalPay.innerHTML = (PMT*duration).toFixed(2);
+}
+
+function reset() {
+
+document.getElementById("tenure1").value = '';
+document.getElementById("rateoutput").innerHTML = '';
+document.getElementById("monthlyDeduc").innerHTML = '';
+document.getElementById("totalpay").innerHTML = ''; 
+document.getElementById("interest").innerHTML = ''; 
+
+}
+     
+</script>
+    </body>

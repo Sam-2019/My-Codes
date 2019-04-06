@@ -1,0 +1,97 @@
+body, html{
+font-family: Georgia, "Times New Roman", Times, serif;
+} 
+
+label {
+text-align: right;
+margin-right: .5em;
+color: #0b0b0b;
+}
+
+input.textinput {
+font: bold 13pt sans; /* Use a big bold font */
+background: #f1f1fd; /* On a light bluish-gray background */
+padding: 2px; /* Surround it with some space */
+border: solid black 1.5px; /* And a solid black border */
+border-radius: 5px; /* Round the corners (where supported) */
+height: 1em;
+font-family: Georgia, "Times New Roman", Times, serif;
+padding: 4px; /* Surround it with some space */
+width: 50%;  
+}
+
+span.textinput {
+font: bold 13pt sans; /* Use a big bold font */
+background: #f1f1fd; /* On a light bluish-gray background */
+padding: 2px; /* Surround it with some space */
+border: solid black 1.5px; /* And a solid black border */
+border-radius: 5px; /* Round the corners (where supported) */
+height: 1em;
+font-family: Georgia, "Times New Roman", Times, serif;
+padding: 4px; /* Surround it with some space */
+width: 50%;  
+}
+
+input[type="submit"], input[type="reset"]{
+font-family: Georgia, "Times New Roman", Times, serif;
+width: 6.2em;
+height: 2em;
+float: left;
+background: white;
+font-size: inherit;
+border: 1px solid #04699d;
+border-radius: 4px;
+box-shadow: 2px 2px 3px rgba(0,0,0,.5);
+box-shadow: 0 5px 3px rgba(0,0,0,.5);
+-webkit-transition: background-color 0.2s, border-color 0.2s, top .2s, box-shadow 0.2s;
+-moz-transition: background-color 0.2s, border-color 0.2s, top .2s, box-shadow 0.2s;
+-o-transition: background-color 0.2s, border-color 0.2s, top .2s, box-shadow 0.2s;
+-ms-transition: background-color 0.2s, border-color 0.2s, top .2s, box-shadow 0.2s;
+transition: background-color 0.2s, border-color 0.2s, top .2s, box-shadow 0.2s;
+}
+
+input[type="submit"]{
+margin-right: 1em;
+color: #000000; /* the submit button text is attention-getting red */
+}
+
+input[type="reset"] {
+color: #ff0000; /* the submit button text is attention-getting red */
+}
+
+.buttons:hover,
+.buttons:focus {
+  background-color: rgba(0, 137, 255, 0.44);
+  border-color: #13fd00;   
+}
+.buttons:active {
+  top: 3px;
+    box-shadow: 0 1px 2px rgb(149, 149, 149);}
+
+.buttonsb:hover,
+.buttonsb:focus {
+  background-color: rgba(255, 0, 0, 0.44);
+  border-color: #fd0000;
+    color: white;
+}
+
+.buttonsb:active {
+  top: 3px;
+    box-shadow: 0 1px 2px rgb(255, 0, 0);
+color: white;}
+
+
+
+.output { /* Style apply to element with id="clock" */
+font: bold 13pt sans; /* Use a big bold font */
+background: #f1f1fd; /* On a light bluish-gray background */
+padding: 2px; /* Surround it with some space */
+border: solid black 1.5px; /* And a solid black border */
+border-radius: 5px; /* Round the corners (where supported) */
+display: inline-grid;
+height: 1.5em;
+font-family: Georgia, "Times New Roman", Times, serif;
+font-size: 1em;
+padding: 4px; /* Surround it with some space */
+width: auto;
+}

@@ -1,0 +1,14 @@
+label {
+margin-right: .5em;
+color: #0b0b0b;
+}
+
+
+
+input[type="submit"], input[type="reset"]{
+font-family: Georgia, "Times New Roman", Times, serif;
+width: 6.2em;
+height: 2em;
+background: white;
+border-radius: 4px;
+}

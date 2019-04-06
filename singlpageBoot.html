@@ -1,0 +1,536 @@
+ <!DOCTYPE html>
+<html>
+    
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="bootstrap.css" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+<title>Home</title>
+    
+<style>
+body {
+    background: #fff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
+    font-size: 16px;
+    margin: 0em auto 0em auto;
+    max-width: 800px;
+    padding: 2em 2em 4em;
+}
+    
+#button1, #button2 {
+color: white;
+}
+    
+#button1, #calculate {
+margin: 0em 0em 0.5em 0em;
+
+}
+
+h1{
+text-align: center;
+    }
+
+
+    
+#LoanAmount{
+
+    }
+    
+#MonthlyDeduction{
+
+    }
+    
+.container{
+display:grid;
+grid-template-columns: auto auto auto auto;
+background-color: rgba(0, 123, 255, 0.28);
+padding: 0px 0px 0px 0px;
+
+}
+    
+.container2{
+display:grid;
+grid-template-columns: auto auto;
+background-color: rgba(0, 123, 255, 0.28);
+padding: 0px 0px 0px 0px;
+}
+    
+.grid-col{
+
+padding: 10px 0px 10px 0px;
+border: 0.5px solid #fff;
+font-size: auto;
+color:black;
+text-align: center;
+}
+    
+</style>
+    
+ <style>
+      .notifications {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+    </style>
+    
+</head>
+    
+<body>
+
+ 
+<h1></h1>
+
+<div class="modal fade" id="firefoxModal" tabindex="-1" role="dialog" aria-labelledby="firefoxModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">  
+<h6 class="modal-title" id="firefoxModalLabel">Welcome</h6>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>  
+</button>
+</div>
+<div class="modal-body">
+Please enter your name
+<input type="text" id="ff-bug-input" class="form-control">
+</div>
+<div class="modal-footer">  
+<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+</div></div></div></div>
+    
+<div class="modal fade" id="Alert1" tabindex="-1" role="dialog" aria-labelledby="firefoxModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-body">Please enter Afford</div>
+<div class="modal-footer">  
+<button type="button" 
+        class="btn btn-secondary btn-sm" 
+        data-dismiss="modal">Close</button>
+</div></div></div></div>
+    
+<div class="modal fade" id="Alert2" tabindex="-1" role="dialog" aria-labelledby="firefoxModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-body">Please enter Amount</div>
+<div class="modal-footer">  
+<button type="button"
+        class="btn btn-secondary btn-sm"
+        data-dismiss="modal">Close</button>
+</div></div></div></div>
+
+<div class="modal fade" id="Alert3" tabindex="-1" role="dialog" aria-labelledby="firefoxModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-body">Please select Period</div>
+<div class="modal-footer">  
+<button type="button"
+        class="btn btn-secondary btn-sm"
+        data-dismiss="modal">Close</button>
+</div></div></div></div>
+    
+  
+    <div  data-toggle="buttons">  
+
+<button type="button" id="button1"
+        class="btn btn-warning btn-lg btn-block
+               shadow-sm rounded"
+        data-toggle="collapse"
+        data-target="#LoanAmount"
+        aria-expanded="false"
+        aria-controls="LoanAmount"
+      >Check Loan Amount</button>
+    
+<button type="button" id="button2"
+        class="btn btn-warning btn-lg btn-block
+               shadow-sm rounded"
+        data-toggle="collapse"
+        data-target="#MonthlyDeduction"
+        aria-expanded="false"
+        aria-controls="MonthlyDeduction">Check Monthly Deduction</button> </div>
+       
+<div id="LoanAmount" class="collapse"> 
+<br>
+    
+<div class="card card-body">
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text" id="basic-addon1">Enter Afford</span>
+</div>
+<input type="number" 
+       id="afford" 
+       class="form-control" 
+       required>
+   </div>  
+    
+<button type="submit"
+        id="calculate"
+        onclick="LAcalculate()"
+        class="btn btn-dark btn-sm">Calculate</button>
+    
+<button type="button"
+        id="reset"
+        onclick="LAreset()"
+        class="btn btn-dark btn-sm">Reset</button>
+     <br>
+        
+<label hidden>Loan Amount: </label>
+
+<div class="container">
+    <div class="grid-col">Duration</div>
+    <div class="grid-col">Amount</div>
+    <div class="grid-col">Duration</div>
+    <div class="grid-col">Amount</div>
+    
+    <span class="grid-col">3</span>
+    <span class="grid-col" id="3"></span>
+    
+    <span class="grid-col">30</span>
+    <span class="grid-col" id="30"></span>
+    
+     <span class="grid-col">6</span>
+    <span class="grid-col" id="6"></span>
+    
+    <span class="grid-col">36</span>
+    <span class="grid-col" id="36"></span>
+    
+     <span class="grid-col">12</span>
+    <span class="grid-col" id="12"></span>
+    
+    <span class="grid-col">42</span>
+    <span class="grid-col" id="42"></span>
+    
+     <span class="grid-col">18</span>
+    <span class="grid-col" id="18"></span>
+    
+    <span class="grid-col">48</span>
+    <span class="grid-col" id="48"></span>
+    
+     <span class="grid-col">24</span>
+    <span class="grid-col" id="24"></span>
+    
+    <span class="grid-col">54</span>
+    <span class="grid-col" id="54"></span>
+</div>
+    <br>
+<button id="compare"
+        onclick=""
+        class="btn btn-danger btn-sm">Compare</button>
+    
+</div> </div>
+    <!-- For Loan Amount. -->
+    
+<div id="MonthlyDeduction" class="collapse"> 
+    <br>
+    <div class="card card-body">
+
+<p hidden></p>
+    
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text" id="basic-addon1">Enter Amount</span>
+</div>
+<input type="number" id="amount" class="form-control" required>
+</div>
+    
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text" id="basic-addon1">Select Period</span>
+</div>
+<input type="" id="tenure1" list="period" class="form-control" onchange="rateShow()"  required>
+</div>
+    
+<datalist id="period">
+<option value="3">
+<option value="6">
+<option value="12">
+<option value="18">
+<option value="24">
+<option value="30">
+<option value="36">
+<option value="42">
+<option value="48">
+<option value="54">
+</datalist>
+
+<button type="button" id="2sign" 
+        class="btn btn-dark btn-sm" hidden>Rate</button>
+     
+<span id="rateoutput" hidden></span>
+
+<button type="submit" id="calculate" onclick="MDcalculate()"
+class="btn btn-dark btn-sm">Calculate</button>
+    
+<button type="button" id="reset" onclick="MDreset()"
+        class="btn btn-dark btn-sm">Reset</button>    
+         
+     <br>
+<div class="container2">
+    <div class="grid-col">Monthly Deduction:</div>
+    <div class="grid-col" id="monthlyDeduc"></div>
+    
+    <div class="grid-col">Total Interest: </div>
+    <div class="grid-col" id="interest"></div>
+    
+    <div class="grid-col">Total Payment:</div>
+    <div class="grid-col" id="totalpay"></div> 
+</div>
+        <br>
+        
+<button id="compare2"
+        onclick=""
+        class="btn btn-danger btn-sm">Compare</button>
+        
+    </div> 
+      </div> 
+    <!-- For Monthly Deduction -->
+    
+
+<script src="bootstrap.bundle.js"></script>
+
+<script>  
+    
+$('#compare').hide();
+$('#compare2').hide();
+    
+$('.container').hide();
+$('.container2').hide();
+    
+$(window).on("load",function(){
+  $("##firefoxModal").modal('show');
+});
+</script>  <!-- Modal and Compare button -->
+          
+<script> //For  Loan Amount
+  
+var loanAfford = document.getElementById("afford");
+    
+var period_loan = [3, 6, 12, 18, 24, 30, 36, 42, 48, 54];
+     
+function LAcalculate(){
+
+if (document.getElementById("afford").value === "") {
+     $("#Alert1").modal('show');
+return false}  
+    
+var rate_loan = [0.065, 0.060041, 0.062861, 0.0570, 0.045539, 0.045936, 0.046222, 0.046435];
+    
+var afford = parseFloat(loanAfford.value);
+    
+var admin   = (1 + 0.06);
+    
+function amountFunction(afford, pmt, admin) {
+  return (afford * pmt) / admin;
+}
+    
+var period3 = amountFunction(afford, ((1/rate_loan[0])-(1/(rate_loan[0]*Math.pow((1+rate_loan[0]),period_loan[0])))), admin);
+    
+var period6 = amountFunction(afford, ((1/rate_loan[0])-(1/(rate_loan[0]*Math.pow((1+rate_loan[0]),period_loan[1])))), admin);
+    
+var period12 = amountFunction(afford, ((1/rate_loan[1])-(1/(rate_loan[1]*Math.pow((1+rate_loan[1]),period_loan[2])))), admin);
+    
+var period18 = amountFunction(afford, ((1/rate_loan[2])-(1/(rate_loan[2]*Math.pow((1+rate_loan[2]),period_loan[3])))), admin);
+    
+var period24 = amountFunction(afford, ((1/rate_loan[3])-(1/(rate_loan[3]*Math.pow((1+rate_loan[3]),period_loan[4])))), admin);
+    
+var period30 = amountFunction(afford, ((1/rate_loan[3])-(1/(rate_loan[3]*Math.pow((1+rate_loan[3]),period_loan[5])))), admin);
+    
+var period36 = amountFunction(afford, ((1/rate_loan[4])-(1/(rate_loan[4]*Math.pow((1+rate_loan[4]),period_loan[6])))), admin);
+    
+var period42 = amountFunction(afford, ((1/rate_loan[5])-(1/(rate_loan[5]*Math.pow((1+rate_loan[5]),period_loan[7])))), admin);
+    
+var period48 = amountFunction(afford, ((1/rate_loan[6])-(1/(rate_loan[6]*Math.pow((1+rate_loan[6]),period_loan[8])))), admin);
+    
+var period54 = amountFunction(afford, ((1/rate_loan[7])-(1/(rate_loan[7]*Math.pow((1+rate_loan[7]),period_loan[9])))), admin);
+    
+document.getElementById("3").innerHTML  = period3.toFixed(2);
+document.getElementById("6").innerHTML  = period6.toFixed(2);
+document.getElementById("12").innerHTML = period12.toFixed(2);
+document.getElementById("18").innerHTML = period18.toFixed(2);
+document.getElementById("24").innerHTML = period24.toFixed(2);
+document.getElementById("30").innerHTML = period30.toFixed(2);
+document.getElementById("36").innerHTML = period36.toFixed(2);
+document.getElementById("42").innerHTML = period42.toFixed(2);
+document.getElementById("48").innerHTML = period48.toFixed(2);
+document.getElementById("54").innerHTML = period54.toFixed(2);
+
+$("#compare").show();
+    
+$('.container').show();
+
+} 
+  
+     
+function LAreset() {
+document.getElementById("afford").value = '';
+document.getElementById("3").innerHTML  = '';
+document.getElementById("6").innerHTML  = '';
+document.getElementById("12").innerHTML = '';
+document.getElementById("18").innerHTML = '';
+document.getElementById("24").innerHTML = '';
+document.getElementById("30").innerHTML = '';
+document.getElementById("36").innerHTML = '';
+document.getElementById("42").innerHTML = '';
+document.getElementById("48").innerHTML = '';
+document.getElementById("54").innerHTML = '';
+
+$('#compare').hide();
+  
+}
+     
+</script> <!-- For Loan Amount. -->
+    
+<script>  //For Monthly Deduction
+    
+$("#rateoutput").hide();
+
+$("#2sign").on("click",function(){
+$("#rateoutput").toggle();
+});
+    
+var rate_loan = 
+[6.5, 6.0041, 6.2861, 5.70, 4.5539, 4.5936, 4.6222, 4.6435];
+
+var period_loan = 
+[3, 6, 12, 18, 24, 30, 36, 42, 48, 54];
+     
+var loanAmount = document.getElementById("amount");
+var loanDuration = document.getElementById("tenure1");
+var loanRateShow = document.getElementById("rateoutput");
+var loanPMT = document.getElementById("monthlyDeduc");
+var loanInterest = document.getElementById("interest");
+var loanTotalPay = document.getElementById("totalpay");
+    
+
+     
+function rateShow(){
+    switch(parseFloat(loanDuration.value)) {
+      case period_loan[0]:
+            loanRateShow.innerHTML = (rate_loan[0]);
+            break;
+       case period_loan[1]:
+            loanRateShow.innerHTML = (rate_loan[0]);
+            break;
+        case period_loan[2]:
+            loanRateShow.innerHTML = (rate_loan[1]);
+            break;
+        case period_loan[3]:
+            loanRateShow.innerHTML = (rate_loan[2]);
+            break;
+        case period_loan[4]:
+            loanRateShow.innerHTML = (rate_loan[3]);
+            break;
+        case period_loan[5]:
+            loanRateShow.innerHTML = (rate_loan[3]);
+            break;
+        case period_loan[6]:
+            loanRateShow.innerHTML = (rate_loan[4]);
+            break;
+        case period_loan[7]:
+            loanRateShow.innerHTML = (rate_loan[5]);
+            break;
+        case period_loan[8]:
+            loanRateShow.innerHTML = (rate_loan[6]);
+            break;
+        default:
+            loanRateShow.innerHTML = (rate_loan[7]);}
+}
+    
+function MDcalculate(){
+    
+if (document.getElementById("amount").value === "") {
+     $("#Alert2").modal('show');
+    return false} 
+    
+if (document.getElementById("tenure1").value === "") {
+      $("#Alert3").modal('show');
+    return false} 
+    
+var amount           = parseFloat(loanAmount.value);
+    
+var interest         = parseFloat(loanInterest.value);
+var totalloanpayment = parseFloat(loanTotalPay.value);
+    
+var duration = parseFloat(loanDuration.value);
+    
+switch(duration) {
+    case period_loan[0]:
+        var rateRep = (rate_loan[0]);
+            break;
+    case period_loan[1]:
+        var rateRep = (rate_loan[0]);
+            break;
+    case period_loan[2]:
+        var rateRep = (rate_loan[1]);
+            break;
+    case period_loan[3]:
+        var rateRep = (rate_loan[2]);
+            break;
+    case period_loan[4]:
+        var rateRep = (rate_loan[3]);
+            break;
+    case period_loan[5]:
+        var rateRep = (rate_loan[3]);
+            break;
+    case period_loan[6]:
+        var rateRep = (rate_loan[4]);
+            break;
+    case period_loan[7]:
+        var rateRep = (rate_loan[5]);
+            break;
+    case period_loan[8]:
+        var rateRep = (rate_loan[6]);
+            break;
+    default:
+        var rateRep = (rate_loan[7]);} 
+    
+var rate =  (rateRep/100);
+
+var admin   = (1 + 0.06);
+var pmt1    = (1/rate);
+var pmt2    = (1/(rate*Math.pow((1+rate),duration)));
+
+var PMT     = ((amount*admin)/(pmt1 - pmt2));
+    
+loanPMT.innerHTML      = (PMT).toFixed(2);
+loanInterest.innerHTML = ((PMT*duration) - amount).toFixed(2);
+loanTotalPay.innerHTML = (PMT*duration).toFixed(2);
+    
+        
+$("#compare2").show();
+$('.container2').show();
+}
+
+function MDreset() {
+
+document.getElementById("tenure1").value = '';
+document.getElementById("rateoutput").innerHTML = '';
+document.getElementById("monthlyDeduc").innerHTML = '';
+document.getElementById("totalpay").innerHTML = ''; 
+document.getElementById("interest").innerHTML = ''; 
+
+    $('#compare2').hide();  
+}
+     
+</script> <!-- For Monthly Deduction -->
+    
+
+    </body>
+</html>
+
+    
+
+    
+   <!--
+
+    [[[[[[[[[[[[[[[]]]]]]]]]]]]]]]
+    [:::::[[[[[[[[[]]]]]]]]]:::::]
+    [:::::[   MVJVW MVRTE  ]:::::]
+    [:::::[[[[[[[[[]]]]]]]]]:::::]
+    [[[[[[[[[[[[[[[]]]]]]]]]]]]]]]
+    
+--> 
+    
+   
